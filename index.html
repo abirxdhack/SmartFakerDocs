@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartFaker Documentation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai-sublime.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #007bff, #6610f2);
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+            font-weight: 600;
+        }
+        .hero-section {
+            background: url('https://source.unsplash.com/random/1600x900?tech') no-repeat center center/cover;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .hero-links {
+            margin-top: 20px;
+        }
+        .hero-links .btn {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .hero-links .btn:hover {
+            transform: translateY(-3px);
+        }
+        .btn-pypi {
+            background: #3775A9;
+            color: #fff;
+        }
+        .btn-pypi:hover {
+            background: #2e5f8a;
+        }
+        .btn-github {
+            background: #24292e;
+            color: #fff;
+        }
+        .btn-github:hover {
+            background: #1b1f23;
+        }
+        .btn-telegram {
+            background: #0088cc;
+            color: #fff;
+        }
+        .btn-telegram:hover {
+            background: #006da0;
+        }
+        .section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #ffffff, #f1f3f5);
+        }
+        .section h2 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+            font-weight: 700;
+            color: #007bff;
+        }
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            border-radius: 2px;
+        }
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: #fff;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        .code-block {
+            position: relative;
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        .code-block pre {
+            margin: 0;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s;
+        }
+        .copy-btn:hover {
+            background: #0056b3;
+        }
+        .code-header {
+            background: #343a40;
+            color: #fff;
+            padding: 10px 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #0056b3, #520dc2);
+        }
+        .footer {
+            background: #343a40;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">SmartFaker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#installation">Installation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#usage">Usage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container position-relative">
+            <h1>SmartFaker Documentation</h1>
+            <p class="lead">A powerful Python library for generating fake addresses across 103 countries. Perfect for bots, MTProto API frameworks, and Python scripts.</p>
+            <a href="#installation" class="btn btn-primary mt-3">Get Started</a>
+            <div class="hero-links">
+                <a href="https://pypi.org/project/smartfaker" target="_blank" class="btn btn-pypi"><i class="fab fa-python me-2"></i>View on PyPI</a>
+                <a href="https://github.com/ISmartCoder/Fake-Address-Gen" target="_blank" class="btn btn-github"><i class="fab fa-github me-2"></i>View Source Code</a>
+                <a href="https://t.me/ISmartCoder" target="_blank" class="btn btn-telegram"><i class="fab fa-telegram-plane me-2"></i>Contact @ISmartCoder</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">Installation</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card p-4">
+                        <h3>Install SmartFaker</h3>
+                        <p>To install the SmartFaker library, use the following pip command:</p>
+                        <div class="code-block">
+                            <div class="code-header">Terminal</div>
+                            <pre><code class="language-bash">pip install smartfaker</code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <p class="mt-3"><strong>Supported Python Versions:</strong> SmartFaker is compatible with Python 3.8 and All Upcoming..</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Section -->
+    <section id="usage" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Usage Examples</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card p-4">
+                        <h3>Basic Asyncio Example</h3>
+                        <p>Generate fake addresses using Python's asyncio with the SmartFaker library:</p>
+                        <div class="code-block">
+                            <div class="code-header">Python</div>
+                            <pre><code class="language-python">import asyncio
+from smartfaker import Faker
+
+fake = Faker()
+
+async def main():
+    print("Enter country code (e.g., BD):")
+    country_code = input().strip().upper()
+    if not country_code:
+        print("Country code is required.")
+        return
+
+    print("Enter amount (default 1):")
+    amount_input = input().strip()
+    amount = 1 if not amount_input else int(amount_input)
+
+    try:
+        addresses = await fake.address(country_code, amount)
+        if amount == 1:
+            print(addresses)
+        else:
+            for addr in addresses:
+                print(addr)
+    except ValueError as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+                            </code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-4">
+                        <h3>Basic Pyrofork Example</h3>
+                        <p>Integrate SmartFaker with a Telegram bot using Pyrofork:</p>
+                        <div class="code-block">
+                            <div class="code-header">Python</div>
+                            <pre><code class="language-python">import asyncio
+import logging
+from pyrogram import Client, filters
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.enums import ParseMode
+from smartfaker import Faker
+import pycountry
+
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.INFO)
+
+COMMAND_PREFIX = ["/", ",", ".", "!", "#"]
+
+app = Client(
+    "my_bot",
+    api_id=YOUR_API_ID,
+    api_hash="YOUR_API_HASH",
+    bot_token="YOUR_BOT_TOKEN"
+)
+
+fake = Faker()
+
+page_data = {}
+
+def get_flag(country_code):
+    try:
+        return ''.join(chr(0x1F1E6 + ord(c) - ord('A')) for c in country_code.upper())
+    except Exception:
+        return "🏚"
+
+@app.on_message(filters.command("start", prefixes=COMMAND_PREFIX) & (filters.private | filters.group))
+async def start_handler(client: Client, message: Message):
+    welcome_text = (
+        "**Welcome to SmartFaker Bot! 🚀**\n"
+        "**━━━━━━━━━━━━━**\n"
+        "Generate fake addresses easily!\n"
+        "Use **/fake <code>** for an address (e.g., /fake BD).\n"
+        "Use **/countries** to list available countries.\n"
+        "**━━━━━━━━━━━━━**\n"
+        "Powered by @ISmartCoder | Updates: t.me/TheSmartDev"
+    )
+    await client.send_message(message.chat.id, welcome_text, parse_mode=ParseMode.MARKDOWN)
+
+@app.on_message(filters.command(["fake", "rnd"], prefixes=COMMAND_PREFIX) & (filters.private | filters.group))
+async def fake_handler(client: Client, message: Message):
+    if len(message.command) <= 1:
+        await client.send_message(message.chat.id, "**❌ Please Provide A Country Code**", parse_mode=ParseMode.MARKDOWN)
+        LOGGER.warning(f"Invalid command format: {message.text}")
+        return
+    
+    country_code = message.command[1].upper()
+    if country_code == "UK":
+        country_code = "GB"
+    
+    generating_message = await client.send_message(message.chat.id, "**Generating Fake Address...**", parse_mode=ParseMode.MARKDOWN)
+    
+    try:
+        data = await fake.address(country_code)
+        flag_emoji = data['country_flag']
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton("Copy Postal Code", callback_data=f"copy:{data['postal_code']}")]
+        ])
+        await generating_message.edit_text(
+            f"**Address for {data['country']} {flag_emoji}**\n"
+            f"**━━━━━━━━━━━━━**\n"
+            f"**- Street :** `{data['street_address']}`\n"
+            f"**- Full Name :** `{data['person_name']}`\n"
+            f"**- City/Town/Village :** `{data['city']}`\n"
+            f"**- Gender :** `{data['gender']}`\n"
+            f"**- Postal Code :** `{data['postal_code']}`\n"
+            f"**- Phone Number :** `{data['phone_number']}`\n"
+            f"**- Country :** `{data['country']}`\n"
+            f"**━━━━━━━━━━━━━**\n"
+            f"**Click Below Button For Code 👇**",
+            parse_mode=ParseMode.MARKDOWN,
+            reply_markup=keyboard
+        )
+        LOGGER.info(f"Sent fake address for {country_code} in chat {message.chat.id}")
+    except ValueError as e:
+        LOGGER.error(f"Fake address error for country '{country_code}': {e}")
+        await generating_message.edit_text("**❌ Sorry, Fake Address Generator Failed**", parse_mode=ParseMode.MARKDOWN)
+    except Exception as e:
+        LOGGER.error(f"Fake address error for country '{country_code}': {e}")
+        await generating_message.edit_text("**❌ Sorry, Fake Address Generator Failed**", parse_mode=ParseMode.MARKDOWN)
+
+@app.on_message(filters.command("countries", prefixes=COMMAND_PREFIX) & (filters.private | filters.group))
+async def countries_handler(client: Client, message: Message):
+    chat_id = message.chat.id
+    page_data[chat_id] = page_data.get(chat_id, 0)
+    
+    countries = fake.countries()
+    total_pages = (len(countries) + 9) // 10
+    if not countries or total_pages == 0:
+        await client.send_message(message.chat.id, "No countries available.")
+        return
+    
+    await send_countries_page(client, chat_id, 0, page_data[chat_id])  # Use 0 for initial message_id
+
+async def send_countries_page(client: Client, chat_id: int, message_id: int, page: int):
+    countries = fake.countries()
+    total_pages = (len(countries) + 9) // 10
+    start_idx = page * 10
+    end_idx = min(start_idx + 10, len(countries))
+    current_countries = countries[start_idx:end_idx]
+    
+    response = "**Available Countries (Page {}/{}):**\n\n".format(page + 1, total_pages)
+    for i, country in enumerate(current_countries, start=start_idx + 1):
+        flag = get_flag(country['country_code'])
+        response += f"**{i}. {country['country_name']}**\n"
+        response += f"   - Code: {country['country_code']}\n"
+        response += f"   - Flag: {flag}\n\n"
+    
+    markup = InlineKeyboardMarkup(inline_keyboard=[])
+    row = []
+    if page > 0:
+        row.append(InlineKeyboardButton("Previous", callback_data=f"prev:{page}:{chat_id}"))
+    if page < total_pages - 1:
+        row.append(InlineKeyboardButton("Next", callback_data=f"next:{page}:{chat_id}"))
+    if row:
+        markup.inline_keyboard.append(row)
+    
+    if message_id == 0:
+        sent_msg = await client.send_message(chat_id, response, parse_mode=ParseMode.MARKDOWN, reply_markup=markup)
+        return  # No edit for initial send
+    
+    await client.edit_message_text(chat_id, message_id, response, parse_mode=ParseMode.MARKDOWN, reply_markup=markup)
+
+@app.on_callback_query(filters.regex(r"^(prev|next):(\d+):(\d+)$"))
+async def pagination_handler(client: Client, callback_query):
+    action, page_str, chat_id_str = callback_query.data.split(':')
+    page = int(page_str)
+    chat_id = int(chat_id_str)
+    
+    total_pages = (len(fake.countries()) + 9) // 10
+    if action == "prev" and page > 0:
+        page -= 1
+    elif action == "next" and page < total_pages - 1:
+        page += 1
+    
+    await send_countries_page(client, chat_id, callback_query.message.id, page)
+    await callback_query.answer()
+
+if __name__ == "__main__":
+    app.run()
+                          </code></pre>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <p class="mt-3">Note: Replace <code>YOUR_API_ID</code>, <code>YOUR_API_HASH</code>, and <code>YOUR_BOT_TOKEN</code> with your actual Telegram Bot API credentials.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5">About SmartFaker</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card p-4 text-center">
+                        <h3>Developer Information</h3>
+                        <p>SmartFaker is developed by <strong>@ISmartCoder</strong>, a passionate developer dedicated to creating powerful tools for the Python community.</p>
+                        <p><strong>License:</strong> MIT License</p>
+                        <p><strong>Version:</strong> 2.17.0</p>
+                        <p><strong>Project Links:</strong></p>
+                        <ul class="list-unstyled">
+                            <li><a href="https://pypi.org/project/smartfaker/2.17.0/" target="_blank">PyPI Project Page</a></li>
+                            <li><a href="t.me/TheSmartDev" target="_blank">Updates on Telegram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 SmartFaker. Developed by <a href="https://t.me/ISmartCoder" target="_blank">@ISmartCoder</a>. Licensed under the MIT License.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Highlight.js for code syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize Highlight.js
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+        });
+
+        // Copy code to clipboard
+        function copyCode(button) {
+            const code = button.previousElementSibling.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
